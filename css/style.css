@@ -152,6 +152,9 @@ a:hover {
   right: 0px;
   bottom: 0px;
   width: 250px;
+  margin-right: 23px;
+  border-radius: 5px;
+  overflow: hidden;
 }
 #header #head-music iframe {
   width: 100%;
