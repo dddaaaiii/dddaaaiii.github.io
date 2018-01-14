@@ -149,14 +149,15 @@ a:hover {
 }
 #header #head-music {
   position: fixed;
-  right: 23px;
+  right: 20px;
   bottom: 0px;
   width: 250px;
-  border-radius: 5px;
   overflow: hidden;
+  z-index: 9;
 }
 #header #head-music iframe {
   width: 100%;
+  border-radius: 15px;
 }
 article {
   border-radius: 17px;
