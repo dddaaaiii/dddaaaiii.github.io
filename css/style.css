@@ -147,6 +147,12 @@ a:hover {
   float: left;
   margin-left: 30px;
 }
+#header .head-music {
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
+  width: 250px;
+}
 article {
   border-radius: 17px;
   background: rgba(0,0,0,0.65);
