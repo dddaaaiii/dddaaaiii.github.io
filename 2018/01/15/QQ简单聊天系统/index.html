@@ -84,9 +84,19 @@
 <p>这个其实是模拟聊天系统的对话框拉，其实是不难的，不过也是想和大家分享下拉，刚开始写博客有什么不足的地方请多指正.<br>首先给大家看下效果图呀然后我们开始撸代码呀</p>
 <h2 id=""><a href="#" class="headerlink" title=""></a><img src="/images/2018/1/1.png" alt="alt"></h2><p>是的就是这么个简单的对话框系统<br>好哒我们先分析下行为，输入框中输入文字，然后点击左下角的小图片，图片会切换，点击发表，就形成一段对话框，重复前面的行为，就可以产生类似对话框的效果<br>那我们开始吧</p>
 <ol>
-<li>首先结构和样式重叠HTML和css css我就不写了无非就是那些样式<br>‘ <div id="qq"><br>     <div id="txt-wrap"><br>         <div id="txt1"><br>             <textarea name="" id="txtbox" cols="60" rows="10" style="width: 356px;height: 60px;"></textarea><br>         </div><br>         <div id="txt2"><br>             <a href="javascript:void;" id="aa" target="_blank" rel="noopener"><img id="imgo" src="images/1.jpg" alt=""></a><br>             <button id="btn">发表</button><br>         </div><br>     </div><br>     <!-- 用来作为产生弹框的容器可以这么理解 --><br>     <ul id="talkbox"><br>     </ul><br> </div>    
-
-</li>
+<li>首先结构和样式重叠HTML和css css我就不写了无非就是那些样式<br>‘<pre><br> <div id="qq"><pre><code>&lt;div id=&quot;txt-wrap&quot;&gt;
+    &lt;div id=&quot;txt1&quot;&gt;
+        &lt;textarea name=&quot;&quot; id=&quot;txtbox&quot; cols=&quot;60&quot; rows=&quot;10&quot; style=&quot;width: 356px;height: 60px;&quot;&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;txt2&quot;&gt;
+        &lt;a href=&quot;javascript:void;&quot; id=&quot;aa&quot;&gt;&lt;img  id=&quot;imgo&quot; src=&quot;images/1.jpg&quot; &gt;&lt;/a&gt;
+        &lt;button id=&quot;btn&quot;&gt;发表&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- 用来作为产生弹框的容器可以这么理解 --&gt;
+&lt;ul id=&quot;talkbox&quot;&gt;            
+&lt;/ul&gt;
+</code></pre> </div><br></pre>    </li>
 </ol>
 </blockquote>
 <h2 id="’"><a href="#’" class="headerlink" title="’"></a>’</h2><ol>
@@ -100,13 +110,13 @@ else{
 }
 </code></pre> }</li>
 </ol>
-<h2 id="‘"><a href="#‘" class="headerlink" title="‘"></a>‘</h2><ol>
+<h2 id="’-1"><a href="#’-1" class="headerlink" title="’"></a>’</h2><ol>
 <li>点击发表形成对话框的核心就是innerHTML拉，增加文本文档<br>‘<br>// 点击发表添加li子元素<br> btno.onclick=function(){<br> //得到图片的路径值和输入框的值存起来<pre><code>var sro=imgoo.src;
 var val=txtb.value;
-talkbox.innerHTML+=&quot;&lt;li&gt;&lt;img src=&quot;+sro+&quot;&gt;&lt;span&gt;&quot;+val+&quot;&lt;/span&gt;&lt;/li&gt;&quot;
+talkbox.innerHTML+=&quot;&lt;pre&gt;&lt;li&gt;&lt;img src=&quot;+sro+&quot;&gt;&lt;span&gt;&quot;+val+&quot;&lt;/span&gt;&lt;/li&gt;&lt;/pre&gt;&quot;
 //清零将对话框中的值
 txtb.value=&quot;&quot;;
-</code></pre> }<br>’<br>这个由于ul在发表的图标之外所以不用担心节点覆盖导致的点击事件失灵的问题，</li>
+</code></pre> }<br>’<br>这个由于ul在发表的图标之外所以不用担心节点覆盖导致的点击事件失灵的问题</li>
 </ol>
 
       
@@ -131,7 +141,7 @@ txtb.value=&quot;&quot;;
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="search" name="q" results="0" placeholder="Buscar">
     <input type="hidden" name="q" value="site:yoursite.com">
   </form>
 </div>
@@ -140,7 +150,7 @@ txtb.value=&quot;&quot;;
 
   
 <div class="widget tag">
-  <h3 class="title">Neueste Artikel</h3>
+  <h3 class="title">Entradas Recientes</h3>
   <ul class="entry">
     
       <li>
