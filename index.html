@@ -82,7 +82,7 @@
 <p>这个其实是模拟聊天系统的对话框拉，其实是不难的，不过也是想和大家分享下拉，刚开始写博客有什么不足的地方请多指正.<br>首先给大家看下效果图呀然后我们开始撸代码呀</p>
 <h2 id=""><a href="#" class="headerlink" title=""></a><img src="/images/2018/1/1.png" alt="alt"></h2><p>是的就是这么个简单的对话框系统<br>好哒我们先分析下行为，输入框中输入文字，然后点击左下角的小图片，图片会切换，点击发表，就形成一段对话框，重复前面的行为，就可以产生类似对话框的效果<br>那我们开始吧</p>
 <ol>
-<li>首先结构和样式重叠HTML和css css我就不写了无非就是那些样式<br>“<pre><br> <div id="qq"><pre><code>&lt;div id=&quot;txt-wrap&quot;&gt;
+<li>首先结构和样式重叠HTML和css css我就不写了无非就是那些样式<br>‘<pre><br> <div id="qq"><pre><code>&lt;div id=&quot;txt-wrap&quot;&gt;
     &lt;div id=&quot;txt1&quot;&gt;
         &lt;textarea name=&quot;&quot; id=&quot;txtbox&quot; cols=&quot;60&quot; rows=&quot;10&quot; style=&quot;width: 356px;height: 60px;&quot;&gt;&lt;/textarea&gt;
     &lt;/div&gt;
@@ -94,11 +94,11 @@
 &lt;!-- 用来作为产生弹框的容器可以这么理解 --&gt;
 &lt;ul id=&quot;talkbox&quot;&gt;            
 &lt;/ul&gt;
-</code></pre> </div><br></pre>“</li>
+</code></pre> </div><br></pre>‘</li>
 </ol>
 <hr>
 <ol>
-<li>主要的就是js拉<br> “//获取各种元素节点<br> var txtb=document.getElementById(“txtbox”);<br> var imgoo=document.getElementById(“imgo”);<br> var btno=document.getElementById(“btn”);<br> var talko=document.getElementById(“talkbox”);<br> // 点击切换图片，关键就是定义布尔值用来判断哪张图片<br> var bool=true;<br> imgoo.onclick=function(){<pre><code>if(bool){
+<li>主要的就是js拉<br> ‘//获取各种元素节点<br> var txtb=document.getElementById(“txtbox”);<br> var imgoo=document.getElementById(“imgo”);<br> var btno=document.getElementById(“btn”);<br> var talko=document.getElementById(“talkbox”);<br> // 点击切换图片，关键就是定义布尔值用来判断哪张图片<br> var bool=true;<br> imgoo.onclick=function(){<pre><code>if(bool){
     imgoo.src=&quot;images/2.jpg&quot;;
     bool=false;
 }
@@ -109,13 +109,13 @@ else{
 </code></pre> }</li>
 </ol>
 </blockquote>
-<h2 id="“"><a href="#“" class="headerlink" title="“"></a>“</h2><ol>
-<li>点击发表形成对话框的核心就是innerHTML拉，增加文本文档<br>“<br>// 点击发表添加li子元素<br> btno.onclick=function(){<br> //得到图片的路径值和输入框的值存起来<pre><code>var sro=imgoo.src;
+<h2 id="‘"><a href="#‘" class="headerlink" title="‘"></a>‘</h2><ol>
+<li>点击发表形成对话框的核心就是innerHTML拉，增加文本文档<br>‘<br>// 点击发表添加li子元素<br> btno.onclick=function(){<br> //得到图片的路径值和输入框的值存起来<pre><code>var sro=imgoo.src;
 var val=txtb.value;
 talkbox.innerHTML+=&quot;&lt;pre&gt;&lt;li&gt;&lt;img src=&quot;+sro+&quot;&gt;&lt;span&gt;&quot;+val+&quot;&lt;/span&gt;&lt;/li&gt;&lt;/pre&gt;&quot;
 //清零将对话框中的值
 txtb.value=&quot;&quot;;
-</code></pre> }<br>“<br>这个由于ul在发表的图标之外所以不用担心节点覆盖导致的点击事件失灵的问题</li>
+</code></pre> }<br>‘<br>这个由于ul在发表的图标之外所以不用担心节点覆盖导致的点击事件失灵的问题</li>
 </ol>
 
       
