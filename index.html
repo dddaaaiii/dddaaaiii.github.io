@@ -87,7 +87,7 @@
 </li>
 </ol>
 </blockquote>
-<h2 id="‘"><a href="#‘" class="headerlink" title="‘"></a>‘</h2><ol>
+<h2 id="’"><a href="#’" class="headerlink" title="’"></a>’</h2><ol>
 <li>主要的就是js拉<br>‘    //获取各种元素节点<br> var txtb=document.getElementById(“txtbox”);<br> var imgoo=document.getElementById(“imgo”);<br> var btno=document.getElementById(“btn”);<br> var talko=document.getElementById(“talkbox”);<br> // 点击切换图片，关键就是定义布尔值用来判断哪张图片<br> var bool=true;<br> imgoo.onclick=function(){<pre><code>if(bool){
     imgoo.src=&quot;images/2.jpg&quot;;
     bool=false;
@@ -98,13 +98,13 @@ else{
 }
 </code></pre> }</li>
 </ol>
-<h2 id="‘-1"><a href="#‘-1" class="headerlink" title="‘"></a>‘</h2><ol>
+<h2 id="‘"><a href="#‘" class="headerlink" title="‘"></a>‘</h2><ol>
 <li>点击发表形成对话框的核心就是innerHTML拉，增加文本文档<br>‘<br>// 点击发表添加li子元素<br> btno.onclick=function(){<br> //得到图片的路径值和输入框的值存起来<pre><code>var sro=imgoo.src;
 var val=txtb.value;
 talkbox.innerHTML+=&quot;&lt;li&gt;&lt;img src=&quot;+sro+&quot;&gt;&lt;span&gt;&quot;+val+&quot;&lt;/span&gt;&lt;/li&gt;&quot;
 //清零将对话框中的值
 txtb.value=&quot;&quot;;
-</code></pre> }<br>‘<br>这个由于ul在发表的图标之外所以不用担心节点覆盖导致的点击事件失灵的问题，</li>
+</code></pre> }<br>’<br>这个由于ul在发表的图标之外所以不用担心节点覆盖导致的点击事件失灵的问题，</li>
 </ol>
 
       
