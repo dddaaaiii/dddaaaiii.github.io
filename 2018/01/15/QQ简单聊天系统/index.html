@@ -3,12 +3,11 @@
 <head>
   <meta charset="utf-8" />
   
-  <title>QQ简单聊天系统 | 高渐离^.^</title>
-  <meta name="author" content="John Dai" />
+  <title>QQ简单聊天系统 | 高渐离只会拉二胡的博客</title>
+  <meta name="author" content="老戴" />
 
   
-  <meta name="description" content="这个其实是模拟聊天系统的对话框拉，其实是不难的，不过也是想和大家分享下拉，刚开始写博客有什么不足的地方请多指正.首先给大家看下效果图呀然后我们开始撸代码呀
-是的就是这么个简单的对话框系统好哒我们先分析下行为，输入框中输入文字，然后点击左下角的小图片，图片会切换，点击发表，就形成一段对话框，重复前面的" />
+  <meta name="description" content="IT" />
   
 
   
@@ -16,7 +15,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
   <meta property="og:title" content="QQ简单聊天系统" />
-  <meta property="og:site_name" content="高渐离^.^" />
+  <meta property="og:site_name" content="高渐离只会拉二胡的博客" />
 
   
   
@@ -29,7 +28,7 @@
   <link href="/css/images/favicon.ico" rel="icon" />
   
 
-  <link rel="alternate" href="/atom.xml" title="高渐离^.^" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="高渐离只会拉二胡的博客" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -43,7 +42,7 @@
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">高渐离^.^</a></h1>
+  <h1><a href="/">高渐离只会拉二胡的博客</a></h1>
   <h2><a href="/"></a></h2>
 </div>
 <nav id="main-nav" class="alignright">
@@ -114,7 +113,7 @@ else{
 <h2 id="…"><a href="#…" class="headerlink" title="…"></a>…</h2><ol>
 <li>点击发表形成对话框的核心就是innerHTML拉，增加文本文档<br>…<br>// 点击发表添加li子元素<br> btno.onclick=function(){<br> //得到图片的路径值和输入框的值存起来<pre><code>var sro=imgoo.src;
 var val=txtb.value;
-talkbox.innerHTML+=&quot;&lt;pre&gt;&lt;li&gt;&lt;img src=&quot;+sro+&quot;&gt;&lt;span&gt;&quot;+val+&quot;&lt;/span&gt;&lt;/li&gt;&lt;/pre&gt;&quot;
+talkbox.innerHTML+=&quot;&lt;li&gt;&lt;img src=&quot;+sro+&quot;&gt;&lt;span&gt;&quot;+val+&quot;&lt;/span&gt;&lt;/li&gt;&quot;
 //清零将对话框中的值
 txtb.value=&quot;&quot;;
 </code></pre> }<br>…<br>这个由于ul在发表的图标之外所以不用担心节点覆盖导致的点击事件失灵的问题</li>
@@ -143,7 +142,7 @@ txtb.value=&quot;&quot;;
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Поиск">
+    <input type="search" name="q" results="0" placeholder="Suche">
     <input type="hidden" name="q" value="site:yoursite.com">
   </form>
 </div>
@@ -154,6 +153,10 @@ txtb.value=&quot;&quot;;
 <div class="widget tag">
   <h3 class="title">Neueste Artikel</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/2018/01/27/js中的逻辑运算符/">js中的逻辑运算符</a>
+      </li>
     
       <li>
         <a href="/2018/01/15/QQ简单聊天系统/">QQ简单聊天系统</a>
@@ -184,7 +187,7 @@ txtb.value=&quot;&quot;;
   <footer id="footer" class="inner"><div class="alignleft">
   <p>
   
-  &copy; 2018 John Dai
+  &copy; 2018 老戴
   
   All rights reserved.</p>
   <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
