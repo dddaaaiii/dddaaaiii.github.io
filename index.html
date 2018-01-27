@@ -82,19 +82,36 @@
       
         <p>逻辑运算符&amp;&amp; || 中，如果&amp;&amp;的第一个运算数是false，就不再考虑第二个运算数，直接返回false；如果||的第一个运算数是true，也不再考虑第二个运算数，直接返回true。<br>在js逻辑运算中，0、””、null、false、undefined、NaN都会判为false，其他都为true（好像没有遗漏了吧，请各位确认下）。</p>
 <h2 id="那么就可以这么用了"><a href="#那么就可以这么用了" class="headerlink" title="那么就可以这么用了"></a>那么就可以这么用了</h2><hr>
-<p>[html] view plain copy<br>subNodeId:$(item).data(“sub-node-id”) || -1,  </p>
+<html>view plain copy<br>subNodeId:$(item).data(“sub-node-id”) || -1,<br></html>  
+
+
 <p>当取值为null的时候，会赋值一个-1。</p>
 <p>下面是抄的：</p>
 <p>假设对成长速度显示规定如下：<br>成长速度为5显示1个箭头；<br>成长速度为10显示2个箭头；<br>成长速度为12显示3个箭头；<br>成长速度为15显示4个箭头；<br>其他都显示都显示0各箭头。<br>用代码怎么实现？</p>
-<p>差一点的if，else：<br>[html] view plain copy<br>var add_level = 0;    </p>
-<p>if(add_step == 5){<br>    add_level = 1;<br>}<br>else if(add_step == 10){<br>    add_level = 2;<br>}<br>else if(add_step == 12){<br>    add_level = 3;<br>}<br>else if(add_step == 15){<br>    add_level = 4;<br>}<br>else {<br>    add_level = 0;<br>}    </p>
-<p>稍好些的switch：<br>[html] view plain copy<br>var add_level = 0;    </p>
-<p>switch(add_step){<br>    case 5 : add_level = 1;<br>        break;<br>    case 10 : add_level = 2;<br>        break;<br>    case 12 : add_level = 3;<br>        break;<br>    case 15 : add_level = 4;<br>        break;<br>    default : add_level = 0;<br>        break;<br>}    </p>
+<p>差一点的if，else：</p>
+<html> view plain copy<br>var add_level = 0;<br><br>if(add_step == 5){<br>    add_level = 1;<br>}<br>else if(add_step == 10){<br>    add_level = 2;<br>}<br>else if(add_step == 12){<br>    add_level = 3;<br>}<br>else if(add_step == 15){<br>    add_level = 4;<br>}<br>else {<br>    add_level = 0;<br>}<br></html>  
+
+
+
+<p>稍好些的switch：</p>
+<html> view plain copy<br>var add_level = 0;<br><br>switch(add_step){<br>    case 5 : add_level = 1;<br>        break;<br>    case 10 : add_level = 2;<br>        break;<br>    case 12 : add_level = 3;<br>        break;<br>    case 15 : add_level = 4;<br>        break;<br>    default : add_level = 0;<br>        break;<br>}<br></html>  
+
+
+
 <p>如果需求改成：<br>成长速度为&gt;12显示4个箭头；<br>成长速度为&gt;10显示3个箭头；<br>成长速度为&gt;5显示2个箭头；<br>成长速度为&gt;0显示1个箭头；<br>成长速度为&lt;=0显示0个箭头。</p>
 <p>那么用switch实现起来也很麻烦了。</p>
-<p>那么你有没有想过用一行就代码实现呢？<br>ok，让我们来看看js强大的表现力吧：<br>[html] view plain copy<br>var add_level = (add_step==5 &amp;&amp; 1) || (add_step==10 &amp;&amp; 2) || (add_step==12 &amp;&amp; 3) || (add_step==15 &amp;&amp; 4) || 0;    </p>
-<p>更强大的，也更优的：<br>[html] view plain copy<br>var add_level={‘5’:1,’10’:2,’12’:3,’15’:4}[add_step] || 0;    </p>
-<p>第二个需求：<br>[html] view plain copy<br>var add_level = (add_step&gt;12 &amp;&amp; 4) || (add_step&gt;10 &amp;&amp; 3) || (add_step&gt;5 &amp;&amp; 2) || (add_step&gt;0 &amp;&amp; 1) || 0;    </p>
+<p>那么你有没有想过用一行就代码实现呢？<br>ok，让我们来看看js强大的表现力吧：</p>
+<html> view plain copy<br>var add_level = (add_step==5 &amp;&amp; 1) || (add_step==10 &amp;&amp; 2) || (add_step==12 &amp;&amp; 3) || (add_step==15 &amp;&amp; 4) || 0;<br></html>  
+
+
+<p>更强大的，也更优的：</p>
+<html> view plain copy<br>var add_level={‘5’:1,’10’:2,’12’:3,’15’:4}[add_step] || 0;<br></html>  
+
+
+<p>第二个需求：</p>
+<html> view plain copy<br>var add_level = (add_step&gt;12 &amp;&amp; 4) || (add_step&gt;10 &amp;&amp; 3) || (add_step&gt;5 &amp;&amp; 2) || (add_step&gt;0 &amp;&amp; 1) || 0;<br></html>  
+
+
 <p>首先我们来梳理一下一个概念，请你一定要记住：在js逻辑运算中，0、””、null、false、undefined、NaN都会判为false，其他都为true（好像没有遗漏了吧，请各位确认下）。这个一定要记住，不然应用||和&amp;&amp;就会出现问题。</p>
 <p>这里顺便提下：经常有人问我，看到很多代码if(!!attr)，为什么不直接写if(attr)；<br>其实这是一种更严谨的写法：<br>请测试 typeof 5和typeof !!5的区别。!!的作用是把一个其他类型的变量转成的bool类型。</p>
 <p>下面主要讨论下逻辑运算符&amp;&amp;和||。</p>
@@ -102,38 +119,13 @@
 <p>if(a &gt;=5){<br>    alert(“你好”);<br>}<br>可以写成：<br>a &gt;= 5 &amp;&amp; alert(“你好”);</p>
 <p>这样只需一行代码就搞定。但是需要注意的一点就是：js中||和&amp;&amp;的特性帮我们精简了代码的同时，也带来了代码可读性的降低。这就需要我们自己来权衡了。<br>一方面精简js代码，能实质性的减少网络流量，尤其是大量应用的js公用库。个人比较推荐的做法是：如果是相对复杂的应用，请适当地写一些注释。这个和正在表达式一样，能够精简代码，但是可读性会降低，对读代码的人要求会高些，最好的办法就是写注释。</p>
 <p>我们可以不使用这些技巧，但是我们一定要能看懂，因为这些技巧已经广泛应用，尤其是像JQuery等js框里的代码，不理解这些你就很难看懂别人的代码。<br>像var Yahoo = Yahoo || {};这种是非常广泛应用的。</p>
-<p>ok,最后让我们来看一段jQuery中的代码吧：<br>[html] view plain copy<br>var wrap =<br>    // option or optgroup<br>    !tags.indexOf(“&lt;opt”) &amp;&amp;<br>    [ 1, “<select multiple="multiple">“, “</select>“ ] ||    </p>
-<pre><code>!tags.indexOf(&quot;&lt;leg&quot;) &amp;&amp;    
-[ 1, &quot;&lt;fieldset&gt;&quot;, &quot;&lt;/fieldset&gt;&quot; ] ||    
+<p>ok,最后让我们来看一段jQuery中的代码吧：</p>
+<html> view plain copy<br>var wrap =<br>    // option or optgroup<br>    !tags.indexOf(“&lt;opt”) &amp;&amp;<br>    [ 1, “<select multiple="multiple">“, “</select>“ ] ||<br><br>    !tags.indexOf(“&lt;leg”) &amp;&amp;<br>    [ 1, “<fieldset>“, “</fieldset>“ ] ||<br><br>    tags.match(/^&lt;(thead|tbody|tfoot|colg|cap)/) &amp;&amp;<br>    [ 1, “<table>“, “</table>“ ] ||<br><br>    !tags.indexOf(“&lt;tr”) &amp;&amp;<br>    [ 2, “<table><tbody>“, “</tbody></table>“ ] ||<br><br>    // <thead> matched above<br>    (!tags.indexOf(“&lt;td”) || !tags.indexOf(“&lt;th”)) &amp;&amp;<br>    [ 3, “<table><tbody><tr>“, “</tr></tbody></table>“ ] ||<br><br>    !tags.indexOf(“&lt;col”) &amp;&amp;<br>    [ 2, “<table><tbody></tbody><colgroup>“, “</colgroup></table>“ ] ||<br><br>    // IE can’t serialize <link> and <script> tags normally<br>    !jQuery.support.htmlSerialize &amp;&amp;<br>    [ 1, “div<div>“, “</div>“ ] ||<br><br>    [ 0, “”, “” ];<br><br>    // Go to html and back, then peel off extra wrappers<br>    div.innerHTML = wrap[1] + elem + wrap[2];<br><br>    // Move to the right depth<br>    while ( wrap[0]– )<br>        div = div.lastChild;<br>        </html>  
 
-tags.match(/^&lt;(thead|tbody|tfoot|colg|cap)/) &amp;&amp;    
-[ 1, &quot;&lt;table&gt;&quot;, &quot;&lt;/table&gt;&quot; ] ||    
-
-!tags.indexOf(&quot;&lt;tr&quot;) &amp;&amp;    
-[ 2, &quot;&lt;table&gt;&lt;tbody&gt;&quot;, &quot;&lt;/tbody&gt;&lt;/table&gt;&quot; ] ||    
-
-// &lt;thead&gt; matched above    
-(!tags.indexOf(&quot;&lt;td&quot;) || !tags.indexOf(&quot;&lt;th&quot;)) &amp;&amp;    
-[ 3, &quot;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&quot;, &quot;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&quot; ] ||    
-
-!tags.indexOf(&quot;&lt;col&quot;) &amp;&amp;    
-[ 2, &quot;&lt;table&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;colgroup&gt;&quot;, &quot;&lt;/colgroup&gt;&lt;/table&gt;&quot; ] ||    
-
-// IE can&apos;t serialize &lt;link&gt; and &lt;script&gt; tags normally    
-!jQuery.support.htmlSerialize &amp;&amp;    
-[ 1, &quot;div&lt;div&gt;&quot;, &quot;&lt;/div&gt;&quot; ] ||    
-
-[ 0, &quot;&quot;, &quot;&quot; ];    
-
-// Go to html and back, then peel off extra wrappers    
-div.innerHTML = wrap[1] + elem + wrap[2];    
-
-// Move to the right depth    
-while ( wrap[0]-- )    
-    div = div.lastChild;    
-</code></pre><p>这段代码是作者用来处理 $(html) 时，有些标签必须要约束的，如<option>必须在</option><select></select>之内的。<br>可能你也发现了作者还有一个很巧的地方就是 !tags.indexOf(“&lt;opt”) ，作者很巧很简单的就实现了startWith的功能了，没有一点多余的代码。jquery源代码中还有很多如此精妙的代码，大家可以去学习学习。</p>
-<p>转自： <a href="http://jianguang-qq.iteye.com/blog/462449?page=2" target="_blank" rel="noopener">http://jianguang-qq.iteye.com/blog/462449?page=2</a></p>
-
+<p>这段代码是作者用来处理 $(html) 时，有些标签必须要约束的，如<option>必须在<select></select>之内的。<br>可能你也发现了作者还有一个很巧的地方就是 !tags.indexOf(“&lt;opt”) ，作者很巧很简单的就实现了startWith的功能了，没有一点多余的代码。jquery源代码中还有很多如此精妙的代码，大家可以去学习学习。</p>
+<p>转自： <a href="http://jianguang-qq.iteye.com/blog/462449?page=2">http://jianguang-qq.iteye.com/blog/462449?page=2</a></p>
+<hr>
+</script></thead></html>
       
     </div>
     
@@ -373,7 +365,7 @@ txtb.value=&quot;&quot;;
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="search" name="q" results="0" placeholder="Buscar">
     <input type="hidden" name="q" value="site:yoursite.com">
   </form>
 </div>
@@ -382,7 +374,7 @@ txtb.value=&quot;&quot;;
 
   
 <div class="widget tag">
-  <h3 class="title">Neueste Artikel</h3>
+  <h3 class="title">Entradas Recientes</h3>
   <ul class="entry">
     
       <li>
