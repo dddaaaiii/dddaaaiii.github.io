@@ -81,50 +81,43 @@
       
         <p>逻辑运算符&amp;&amp; || 中，如果&amp;&amp;的第一个运算数是false，就不再考虑第二个运算数，直接返回false；如果||的第一个运算数是true，也不再考虑第二个运算数，直接返回true。<br>在js逻辑运算中，0、””、null、false、undefined、NaN都会判为false，其他都为true（好像没有遗漏了吧，请各位确认下）。</p>
 <h2 id="那么就可以这么用了"><a href="#那么就可以这么用了" class="headerlink" title="那么就可以这么用了"></a>那么就可以这么用了</h2><hr>
-<html>view plain copy<br>subNodeId:$(item).data(“sub-node-id”) || -1,<br></html>  
-
-
-<p>当取值为null的时候，会赋值一个-1。</p>
-<p>下面是抄的：</p>
-<p>假设对成长速度显示规定如下：<br>成长速度为5显示1个箭头；<br>成长速度为10显示2个箭头；<br>成长速度为12显示3个箭头；<br>成长速度为15显示4个箭头；<br>其他都显示都显示0各箭头。<br>用代码怎么实现？</p>
-<p>差一点的if，else：</p>
-<html> view plain copy<br>var add_level = 0;<br><br>if(add_step == 5){<br>    add_level = 1;<br>}<br>else if(add_step == 10){<br>    add_level = 2;<br>}<br>else if(add_step == 12){<br>    add_level = 3;<br>}<br>else if(add_step == 15){<br>    add_level = 4;<br>}<br>else {<br>    add_level = 0;<br>}<br></html>  
-
-
-
-<p>稍好些的switch：</p>
-<html> view plain copy<br>var add_level = 0;<br><br>switch(add_step){<br>    case 5 : add_level = 1;<br>        break;<br>    case 10 : add_level = 2;<br>        break;<br>    case 12 : add_level = 3;<br>        break;<br>    case 15 : add_level = 4;<br>        break;<br>    default : add_level = 0;<br>        break;<br>}<br></html>  
-
-
-
-<p>如果需求改成：<br>成长速度为&gt;12显示4个箭头；<br>成长速度为&gt;10显示3个箭头；<br>成长速度为&gt;5显示2个箭头；<br>成长速度为&gt;0显示1个箭头；<br>成长速度为&lt;=0显示0个箭头。</p>
-<p>那么用switch实现起来也很麻烦了。</p>
-<p>那么你有没有想过用一行就代码实现呢？<br>ok，让我们来看看js强大的表现力吧：</p>
-<html> view plain copy<br>var add_level = (add_step==5 &amp;&amp; 1) || (add_step==10 &amp;&amp; 2) || (add_step==12 &amp;&amp; 3) || (add_step==15 &amp;&amp; 4) || 0;<br></html>  
-
-
-<p>更强大的，也更优的：</p>
-<html> view plain copy<br>var add_level={‘5’:1,’10’:2,’12’:3,’15’:4}[add_step] || 0;<br></html>  
-
-
-<p>第二个需求：</p>
-<html> view plain copy<br>var add_level = (add_step&gt;12 &amp;&amp; 4) || (add_step&gt;10 &amp;&amp; 3) || (add_step&gt;5 &amp;&amp; 2) || (add_step&gt;0 &amp;&amp; 1) || 0;<br></html>  
-
-
-<p>首先我们来梳理一下一个概念，请你一定要记住：在js逻辑运算中，0、””、null、false、undefined、NaN都会判为false，其他都为true（好像没有遗漏了吧，请各位确认下）。这个一定要记住，不然应用||和&amp;&amp;就会出现问题。</p>
-<p>这里顺便提下：经常有人问我，看到很多代码if(!!attr)，为什么不直接写if(attr)；<br>其实这是一种更严谨的写法：<br>请测试 typeof 5和typeof !!5的区别。!!的作用是把一个其他类型的变量转成的bool类型。</p>
-<p>下面主要讨论下逻辑运算符&amp;&amp;和||。</p>
-<p>几乎所有语言中||和&amp;&amp;都遵循“短路”原理，如&amp;&amp;中第一个表达式为假就不会去处理第二个表达式，而||正好相反。<br>js也遵循上述原则。但是比较有意思的是它们返回的值。<br>代码：var attr = true &amp;&amp; 4 &amp;&amp; “aaa”;<br>那么运行的结果attr就不是简单的true或这false，而是”aaa”<br>再来看看||：<br>代码：var attr = attr || “”;这个运算经常用来判断一个变量是否已定义，如果没有定义就给他一个初始值，这在给函数的参数定义一个默认值的时候比较有用。因为js不像php可以直接在型参数上定义func($attr=5)。再次提醒你记住上面的原则：如果实参需要是0、””、null、false、undefined、NaN的时候也会当false来处理。</p>
-<p>if(a &gt;=5){<br>    alert(“你好”);<br>}<br>可以写成：<br>a &gt;= 5 &amp;&amp; alert(“你好”);</p>
+<figure class="highlight plain"><figcaption><span>plain copy</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line">subNodeId:$(item).data(&quot;sub-node-id&quot;) || -1,  </span><br><span class="line">&lt;/html&gt;```  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">当取值为null的时候，会赋值一个-1。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">下面是抄的：</span><br><span class="line"></span><br><span class="line">假设对成长速度显示规定如下：</span><br><span class="line">成长速度为5显示1个箭头；</span><br><span class="line">成长速度为10显示2个箭头；</span><br><span class="line">成长速度为12显示3个箭头；</span><br><span class="line">成长速度为15显示4个箭头；</span><br><span class="line">其他都显示都显示0各箭头。</span><br><span class="line">用代码怎么实现？</span><br><span class="line"> </span><br><span class="line">```差一点的if，else：</span><br><span class="line">&lt;html&gt; view plain copy</span><br><span class="line">var add_level = 0;    </span><br><span class="line">    </span><br><span class="line">if(add_step == 5)&#123;    </span><br><span class="line">    add_level = 1;    </span><br><span class="line">&#125;    </span><br><span class="line">else if(add_step == 10)&#123;    </span><br><span class="line">    add_level = 2;    </span><br><span class="line">&#125;    </span><br><span class="line">else if(add_step == 12)&#123;    </span><br><span class="line">    add_level = 3;    </span><br><span class="line">&#125;    </span><br><span class="line">else if(add_step == 15)&#123;    </span><br><span class="line">    add_level = 4;    </span><br><span class="line">&#125;    </span><br><span class="line">else &#123;    </span><br><span class="line">    add_level = 0;    </span><br><span class="line">&#125;    </span><br><span class="line">&lt;/html&gt;```  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">稍好些的switch：</span><br><span class="line">```&lt;html&gt; view plain copy</span><br><span class="line">var add_level = 0;    </span><br><span class="line">    </span><br><span class="line">switch(add_step)&#123;    </span><br><span class="line">    case 5 : add_level = 1;    </span><br><span class="line">        break;    </span><br><span class="line">    case 10 : add_level = 2;    </span><br><span class="line">        break;    </span><br><span class="line">    case 12 : add_level = 3;    </span><br><span class="line">        break;    </span><br><span class="line">    case 15 : add_level = 4;    </span><br><span class="line">        break;    </span><br><span class="line">    default : add_level = 0;    </span><br><span class="line">        break;    </span><br><span class="line">&#125; </span><br><span class="line">&lt;/html&gt; ``` </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">如果需求改成：</span><br><span class="line">成长速度为&gt;12显示4个箭头；</span><br><span class="line">成长速度为&gt;10显示3个箭头；</span><br><span class="line">成长速度为&gt;5显示2个箭头；</span><br><span class="line">成长速度为&gt;0显示1个箭头；</span><br><span class="line">成长速度为&lt;=0显示0个箭头。</span><br><span class="line"> </span><br><span class="line">那么用switch实现起来也很麻烦了。</span><br><span class="line"> </span><br><span class="line">那么你有没有想过用一行就代码实现呢？</span><br><span class="line">ok，让我们来看看js强大的表现力吧：</span><br><span class="line">```&lt;html&gt; view plain copy</span><br><span class="line">var add_level = (add_step==5 &amp;&amp; 1) || (add_step==10 &amp;&amp; 2) || (add_step==12 &amp;&amp; 3) || (add_step==15 &amp;&amp; 4) || 0;  </span><br><span class="line">&lt;/html&gt;```  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">更强大的，也更优的：</span><br><span class="line">```&lt;html&gt; view plain copy</span><br><span class="line">var add_level=&#123;&apos;5&apos;:1,&apos;10&apos;:2,&apos;12&apos;:3,&apos;15&apos;:4&#125;[add_step] || 0;</span><br><span class="line">&lt;/html&gt;```  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">第二个需求：</span><br><span class="line">```&lt;html&gt; view plain copy</span><br><span class="line">var add_level = (add_step&gt;12 &amp;&amp; 4) || (add_step&gt;10 &amp;&amp; 3) || (add_step&gt;5 &amp;&amp; 2) || (add_step&gt;0 &amp;&amp; 1) || 0;   </span><br><span class="line">&lt;/html&gt; ``` </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">首先我们来梳理一下一个概念，请你一定要记住：在js逻辑运算中，0、&quot;&quot;、null、false、undefined、NaN都会判为false，其他都为true（好像没有遗漏了吧，请各位确认下）。这个一定要记住，不然应用||和&amp;&amp;就会出现问题。</span><br><span class="line"></span><br><span class="line">这里顺便提下：经常有人问我，看到很多代码if(!!attr)，为什么不直接写if(attr)；</span><br><span class="line">其实这是一种更严谨的写法：</span><br><span class="line">请测试 typeof 5和typeof !!5的区别。!!的作用是把一个其他类型的变量转成的bool类型。</span><br><span class="line"></span><br><span class="line">下面主要讨论下逻辑运算符&amp;&amp;和||。</span><br><span class="line"></span><br><span class="line">几乎所有语言中||和&amp;&amp;都遵循“短路”原理，如&amp;&amp;中第一个表达式为假就不会去处理第二个表达式，而||正好相反。</span><br><span class="line">js也遵循上述原则。但是比较有意思的是它们返回的值。</span><br><span class="line">代码：var attr = true &amp;&amp; 4 &amp;&amp; “aaa”;</span><br><span class="line">那么运行的结果attr就不是简单的true或这false，而是”aaa”</span><br><span class="line">再来看看||：</span><br><span class="line">代码：var attr = attr || “”;这个运算经常用来判断一个变量是否已定义，如果没有定义就给他一个初始值，这在给函数的参数定义一个默认值的时候比较有用。因为js不像php可以直接在型参数上定义func($attr=5)。再次提醒你记住上面的原则：如果实参需要是0、&quot;&quot;、null、false、undefined、NaN的时候也会当false来处理。</span><br><span class="line"></span><br><span class="line">```if(a &gt;=5)&#123;</span><br><span class="line">    alert(&quot;你好&quot;);</span><br><span class="line">&#125;</span><br><span class="line">可以写成：</span><br><span class="line">a &gt;= 5 &amp;&amp; alert(&quot;你好&quot;);</span><br></pre></td></tr></table></figure>
 <p>这样只需一行代码就搞定。但是需要注意的一点就是：js中||和&amp;&amp;的特性帮我们精简了代码的同时，也带来了代码可读性的降低。这就需要我们自己来权衡了。<br>一方面精简js代码，能实质性的减少网络流量，尤其是大量应用的js公用库。个人比较推荐的做法是：如果是相对复杂的应用，请适当地写一些注释。这个和正在表达式一样，能够精简代码，但是可读性会降低，对读代码的人要求会高些，最好的办法就是写注释。</p>
 <p>我们可以不使用这些技巧，但是我们一定要能看懂，因为这些技巧已经广泛应用，尤其是像JQuery等js框里的代码，不理解这些你就很难看懂别人的代码。<br>像var Yahoo = Yahoo || {};这种是非常广泛应用的。</p>
-<p>ok,最后让我们来看一段jQuery中的代码吧：</p>
-<html> view plain copy<br>var wrap =<br>    // option or optgroup<br>    !tags.indexOf(“&lt;opt”) &amp;&amp;<br>    [ 1, “<select multiple="multiple">“, “</select>“ ] ||<br><br>    !tags.indexOf(“&lt;leg”) &amp;&amp;<br>    [ 1, “<fieldset>“, “</fieldset>“ ] ||<br><br>    tags.match(/^&lt;(thead|tbody|tfoot|colg|cap)/) &amp;&amp;<br>    [ 1, “<table>“, “</table>“ ] ||<br><br>    !tags.indexOf(“&lt;tr”) &amp;&amp;<br>    [ 2, “<table><tbody>“, “</tbody></table>“ ] ||<br><br>    // <thead> matched above<br>    (!tags.indexOf(“&lt;td”) || !tags.indexOf(“&lt;th”)) &amp;&amp;<br>    [ 3, “<table><tbody><tr>“, “</tr></tbody></table>“ ] ||<br><br>    !tags.indexOf(“&lt;col”) &amp;&amp;<br>    [ 2, “<table><tbody></tbody><colgroup>“, “</colgroup></table>“ ] ||<br><br>    // IE can’t serialize <link> and <script> tags normally<br>    !jQuery.support.htmlSerialize &amp;&amp;<br>    [ 1, “div<div>“, “</div>“ ] ||<br><br>    [ 0, “”, “” ];<br><br>    // Go to html and back, then peel off extra wrappers<br>    div.innerHTML = wrap[1] + elem + wrap[2];<br><br>    // Move to the right depth<br>    while ( wrap[0]– )<br>        div = div.lastChild;<br>        </html>  
+<p>ok,最后让我们来看一段jQuery中的代码吧：<br>```<html> view plain copy<br>    var wrap =<br>    // option or optgroup<br>    !tags.indexOf(“&lt;opt”) &amp;&amp;<br>    [ 1, “<select multiple="multiple">“, “</select>“ ] ||    </html></p>
+<pre><code>!tags.indexOf(&quot;&lt;leg&quot;) &amp;&amp;    
+[ 1, &quot;&lt;fieldset&gt;&quot;, &quot;&lt;/fieldset&gt;&quot; ] ||    
 
-<p>这段代码是作者用来处理 $(html) 时，有些标签必须要约束的，如<option>必须在<select></select>之内的。<br>可能你也发现了作者还有一个很巧的地方就是 !tags.indexOf(“&lt;opt”) ，作者很巧很简单的就实现了startWith的功能了，没有一点多余的代码。jquery源代码中还有很多如此精妙的代码，大家可以去学习学习。</p>
-<p>转自： <a href="http://jianguang-qq.iteye.com/blog/462449?page=2">http://jianguang-qq.iteye.com/blog/462449?page=2</a></p>
+tags.match(/^&lt;(thead|tbody|tfoot|colg|cap)/) &amp;&amp;    
+[ 1, &quot;&lt;table&gt;&quot;, &quot;&lt;/table&gt;&quot; ] ||    
+
+!tags.indexOf(&quot;&lt;tr&quot;) &amp;&amp;    
+[ 2, &quot;&lt;table&gt;&lt;tbody&gt;&quot;, &quot;&lt;/tbody&gt;&lt;/table&gt;&quot; ] ||    
+
+// &lt;thead&gt; matched above    
+(!tags.indexOf(&quot;&lt;td&quot;) || !tags.indexOf(&quot;&lt;th&quot;)) &amp;&amp;    
+[ 3, &quot;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&quot;, &quot;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&quot; ] ||    
+
+!tags.indexOf(&quot;&lt;col&quot;) &amp;&amp;    
+[ 2, &quot;&lt;table&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;colgroup&gt;&quot;, &quot;&lt;/colgroup&gt;&lt;/table&gt;&quot; ] ||    
+
+// IE can&apos;t serialize &lt;link&gt; and &lt;script&gt; tags normally    
+!jQuery.support.htmlSerialize &amp;&amp;    
+[ 1, &quot;div&lt;div&gt;&quot;, &quot;&lt;/div&gt;&quot; ] ||    
+
+[ 0, &quot;&quot;, &quot;&quot; ];    
+
+// Go to html and back, then peel off extra wrappers    
+div.innerHTML = wrap[1] + elem + wrap[2];    
+
+// Move to the right depth    
+while ( wrap[0]-- )    
+    div = div.lastChild; 
+    &lt;/html&gt; ``` 
+</code></pre><p>这段代码是作者用来处理 $(html) 时，有些标签必须要约束的，如<option>必须在</option><select></select>之内的。<br>可能你也发现了作者还有一个很巧的地方就是 !tags.indexOf(“&lt;opt”) ，作者很巧很简单的就实现了startWith的功能了，没有一点多余的代码。jquery源代码中还有很多如此精妙的代码，大家可以去学习学习。</p>
+<p>转自： <a href="http://jianguang-qq.iteye.com/blog/462449?page=2" target="_blank" rel="noopener">http://jianguang-qq.iteye.com/blog/462449?page=2</a></p>
 <hr>
-</script></thead></html>
+
       
     </div>
     
